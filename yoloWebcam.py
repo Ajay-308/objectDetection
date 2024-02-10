@@ -4,17 +4,21 @@ import cvzone
 import math
 
 # Create a VideoCapture object with camera index 0
-det = cv2.VideoCapture(0)
+# det = cv2.VideoCapture(0)
 
 # Check if the camera is opened successfully
-if not det.isOpened():
-    print("Error: Could not open camera.")
-    exit()
+# if not det.isOpened():
+#     print("Error: Could not open camera.")
+#     exit()
 
+# -- > this code for webcam setting and detection
 # Set the width and height of the video frame
-det.set(3, 640)
-det.set(4, 480)
-model  = YOLO("../palm/yolov8n.pt")
+# det.set(3, 640)
+# det.set(4, 480)
+# model  = YOLO("../palm/yolov8n.pt")
+    
+# --> this code is for video file setting and detection
+model = YOLO("../New folder/imagw/bikes.mp4")
 
 # lets define all classes of object what we are detecting
 classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "train", "truck", "boat",
@@ -30,7 +34,7 @@ classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "trai
               ]
 while True:
     # Read a frame from the camera
-    ret, img = det.read()
+    ret, img = model.read()
     
     # Check if the frame is read successfully
     if not ret:
@@ -74,5 +78,5 @@ while True:
         break
 
 # Release the VideoCapture and close the window
-det.release()
+model.release()
 cv2.destroyAllWindows()
